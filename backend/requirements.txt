@@ -1,0 +1,10 @@
+bcryptjs
+dotenv
+eslint
+express
+express-async-errors
+http-status-codes
+jsonwebtoken
+mongoose
+cors
+nodemon --save-dev
