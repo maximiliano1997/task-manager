@@ -12,6 +12,8 @@ const deleteTask = async (req, res) => {
         params: { id: taskId },
     } = req
 
+    console.log(req.user, req.params)
+
     // Check if exist info/data in the request
     if (!taskId) {
         throw new BadRequestError('Invalid Task ID')

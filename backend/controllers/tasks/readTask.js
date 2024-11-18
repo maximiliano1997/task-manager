@@ -13,7 +13,7 @@ const readTask = async (req, res) => {
     } = req
 
     // Verify if task exists
-    const taskExist = await TaskModel.fidn({ createdBy: userId })
+    const taskExist = await TaskModel.find({ createdBy: userId })
 
     if (!taskExist) {
         throw new Error(`No tasks foudn with id ${userId}`)

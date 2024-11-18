@@ -19,7 +19,7 @@ const userDelete = async (req, res) => {
 
 
     // Ejecutamos
-    const user = await UserModel.findByIdAndUpdate({ _id: userId })
+    const user = await UserModel.findByIdAndDelete({ _id: userId })
 
     // verificamos que la ejecucion sea exitosa
     if (!user) {

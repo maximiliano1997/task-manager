@@ -29,7 +29,7 @@ const updateUsers = async (req, res) => {
 
     const userToUpdate = await UserModel.findByIdAndUpdate(id, payload, { new: true })
 
-    rew.status(StatusCodes.OK).json({ data: { userUpdated: userToUpdate, success: true, error: false, message: 'adminPanel: User Updated Success!' } })
+    res.status(StatusCodes.OK).json({ data: { userUpdated: userToUpdate, success: true, error: false, message: 'adminPanel: User Updated Success!' } })
 }
 
 // delete users
@@ -55,7 +55,7 @@ const readAllTasks = async (req, res) => {
 
 // update tasks
 const updateTasks = async (req, res) => {
-    const { id } = req.body
+    const { id } = req.params
 
     const payload = {
         name: req.body.name,
@@ -64,13 +64,13 @@ const updateTasks = async (req, res) => {
 
     const taskToUpdate = await TaskModel.findByIdAndUpdate(id, payload, { new: true })
 
-    res.status(StatusCodes.OK).json({ data: taskUpdated: taskToUpdate, success: true, error: false, message: 'adminPanel: Task Updated Success!' })
+    res.status(StatusCodes.OK).json({ data: { taskUpdated: taskToUpdate }, success: true, error: false, message: 'adminPanel: Task Updated Success!' })
 }
 
 
 // delete tasks 
 const deleteTasks = async (req, res) => {
-    const { id } = req.body
+    const { id } = req.params  // <--- siempre que trabajamos con /:id en la URL nos referimos a params
 
     const taskToDelete = await TaskModel.findByIdAndDelete({ _id: id })
 

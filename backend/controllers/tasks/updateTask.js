@@ -35,7 +35,7 @@ const updateTask = async (req, res) => {
     }
 
     //Response for finalized OK
-    res.status(StatusCodes.OK).json({ data: { taskUpdated: task._id, from: task.name, to: newTask }, success: true, error: false, message: 'Task Successfully updated!' })
+    res.status(StatusCodes.OK).json({ data: { taskUpdated: task._id, from: task.name, to: newTask.name }, success: true, error: false, message: 'Task Successfully updated!' })
 }
 
 

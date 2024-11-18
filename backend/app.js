@@ -19,12 +19,12 @@ app.use(express.json())
 
 
 //principal routes
-app.use('./api/v1/auth', authRouter)
+app.use('/api/v1/auth', authRouter)
 app.use('/api/v1/userProfile', authenticateUser, userProfileRouter)
 app.use('/api/v1/tasks', authenticateUser, taskRouter)
 app.use('/api/v1/admin', adminPanel)
 
-
+// after-middle
 
 const port = process.env.PORT || 3000
 const start = async () => {

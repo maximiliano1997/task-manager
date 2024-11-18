@@ -3,13 +3,13 @@ const { readAllUsers, updateUsers, deleteUsers, readAllTasks, updateTasks, delet
 
 // Panel de Usuarios <-- para el admin
 router.route('/userPanel').get(readAllUsers)
-router.route('./userPanel/:id').patch(updateUsers)
-router.route('./userPanel/:id').delete(deleteUsers)
+router.route('/userPanel/:id').patch(updateUsers)
+router.route('/userPanel/:id').delete(deleteUsers)
 
 // Panel de Usuarios <-- para el admin
-router.route('./taskPanel').get(readAllTasks)
-router.route('./taskPanel/:id').patch(updateTasks)
-router.route('./taskPanel/:id').delete(deleteTasks)
+router.route('/taskPanel').get(readAllTasks)
+router.route('/taskPanel/:id').patch(updateTasks)
+router.route('/taskPanel/:id').delete(deleteTasks)
 
 
 module.exports = router;

@@ -33,12 +33,12 @@ const userRegister = async (req, res) => {
 
     // encrypt the password
 
-    const salt = bcrypt.getSalt(10)
-    const hashPassword = await bcrypt.hashSync(password, salt)
+    // const salt = bcrypt.getSalt(10)
+    // const hashPassword = await bcrypt.hashSync(password, salt)
 
-    if (!hashPassword) {
-        throw new Error('Hashpass: Something went wrong !')
-    }
+    // if (!hashPassword) {
+    //     throw new Error('Hashpass: Something went wrong !')
+    // }
 
     const payload = {
         ...req.body,
@@ -54,3 +54,4 @@ const userRegister = async (req, res) => {
     res.status(StatusCodes.CREATED).json({ data: { payload, success: true, error: false, message: 'User created Successfully!' }, token })
 }
 
+module.exports = userRegister;

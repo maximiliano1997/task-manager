@@ -1,4 +1,4 @@
-const router = express().Router()
+const router = require('express').Router()
 const { userRead, userUpdate, userDelete } = require('../controllers/user/index')
 
 router.route('/').get(userRead)
