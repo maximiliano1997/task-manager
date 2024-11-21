@@ -1,6 +1,7 @@
 // modules or dependencies
 require('dotenv').config()
 require('express-async-errors')
+const cors = require('cors')
 
 const express = require('express')
 const app = express()
@@ -16,6 +17,12 @@ const adminPanel = require('./routes/admin')
 
 // pre-middle
 app.use(express.json())
+app.use(cors())
+// app.use(cors({
+//     origin: 'http://localhost:5173/',
+//     methods: ['GET', 'POST', 'PATCH', 'DELETE'],
+//     allowedHeaders: ['Content-Type', 'Authorization'],
+// }))
 
 
 //principal routes
