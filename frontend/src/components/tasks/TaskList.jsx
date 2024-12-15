@@ -25,8 +25,22 @@ const counterIndexer = (tasks) => {
 
 
 
-export function TaskList() {
-    const { tasks, setTasks, readTask, updateTask, deleteTask } = useTaskContext()
+export function TaskList({ filter }) {
+    const { tasks, setTasks, readTask, updateTask, deleteTask, pagination } = useTaskContext()
+
+    // const { search } = filter
+    const filteredTasks = tasks?.filter((item) => {
+
+        const matchingStatus = filter?.statusFilter === 'all'
+            ? true
+            : item.completed === filter.statusFilter;
+        const matchingSearch = !filter.search
+            ? true
+            : item.name.toLowerCase().includes(filter.search.toLowerCase())
+
+        return matchingStatus && matchingSearch
+    })
+
 
     const navigate = useNavigate()
 
@@ -34,7 +48,7 @@ export function TaskList() {
         readTask()
             .then((response) => setTasks(response.data.tasks.taskExist))
             .catch((error) => console.error(error))
-    }, [deleteTask, tasks])
+    }, [readTask])
 
     console.log([tasks])
     counterIndexer(tasks)
@@ -44,13 +58,27 @@ export function TaskList() {
         console.log(id)
         deleteTask(id)
 
-        // window.location.reload()
+        return readTask()
+            .then((response) => setTasks(response.data.tasks.taskExist))
+            .catch((error) => console.error(error))
+
     }
 
 
     const handleCheckboxSubmit = (e, id) => {
+
+        // Siempre actualizar el renderizado con los datos nuevos en el handler (intentar no hacerlo en las dependencies de useEFfect)
+        const updatedTasks = tasks.map((task) =>
+            task._id === id
+                ? { ...task, completed: e.target.checked }
+                : task
+        )
+        setTasks(updatedTasks)
+
+
         const taskToUpdateCheckbox = tasks.find(t => t._id === id)
         console.log(taskToUpdateCheckbox)
+
 
         const payload = {
             name: taskToUpdateCheckbox.name,
@@ -107,13 +135,16 @@ export function TaskList() {
         },
     ];
 
+    const paginatedData = filteredTasks.slice(
+        (pagination.currentPage - 1) * pagination.pageSize,
+        pagination.currentPage * pagination.pageSize
+    )
 
-
+    // console.log(test)
 
     return (
         <>
-
-            <Table size='small' tableLayout="auto" className='h-[10%] w-[100%] table-auto' dataSource={tasks} columns={columns} scroll={{ x: "100%", y: '500px' }} pagination={false} />;
+            <Table size='small' tableLayout="auto" className='h-[10%] w-[100%] table-auto' dataSource={paginatedData} columns={columns} scroll={{ x: "100%", y: '500px' }} pagination={false} />;
         </>
     )
 }

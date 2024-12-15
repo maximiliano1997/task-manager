@@ -6,11 +6,22 @@ const taskContext = createContext()
 
 
 const TaskContextWrapper = ({ children }) => {
-    const [tasks, setTasks] = useState()
+    const [tasks, setTasks] = useState([])
+
+    const [pagination, setPagination] = useState({
+        currentPage: 1,
+        pageSize: 10,
+        totalItems: 0,
+        paginatedData: [],
+    })
+
 
     const value = {
         tasks,
         setTasks,
+
+        pagination,
+        setPagination,
 
         createTask,
         readTask,
