@@ -1,0 +1,42 @@
+
+navbar:
+https://blog.openreplay.com/images/three-modernized-navbar-design-layouts/images/hero.png
+
+
+
+login and register:
+https://img.freepik.com/premium-vector/login-form-landing-page-website-concept_108061-335.jpg?semt=ais_hybrid
+https://www.figma.com/community/file/1368675837096182303/mobile-app-login-screen-for-ios
+
+tasks data table:
+https://www.figma.com/community/file/786976918221602322/data-table
+
+
+userprofile
+https://www.figma.com/community/file/1352689312187930405/user-profile-ui-design
+https://www.figma.com/community/file/881830156311997001/user-persona-template
+
+
+contact:
+https://dribbble.com/shots/23562830-Snappy-Contact-Us-Page
+
+about us:
+https://dribbble.com/shots/23883948-Our-team-Untitled-UI
+
+
+error 404:
+https://www.google.com/url?sa=i&url=https%3A%2F%2Ficonscout.com%2Fillustrations%2F404&psig=AOvVaw0cqkHn3OsqQs22yS_HuBAQ&ust=1732048739028000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCMDnr4Hj5okDFQAAAAAdAAAAABAE
+
+ADMIN-PANEL:
+https://dribbble.com/shots/18975440-Dashboard-Onboarding
+https://www.figma.com/community/file/1189482134578785550/admin-panel-ui-kit
+
+
+
+
+
+
+
+
+fully clerk components for react:
+https://clerk.com/docs/components/protect
