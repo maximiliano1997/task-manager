@@ -78,7 +78,7 @@ export const loginUser = async (user) => {
 
         console.log('User logged successfully !')
         console.log(data)
-        return { success: data.successs, data }
+        return { data }
     } catch (error) {
         console.error('Error on Login User....', error)
         return { success: false, error: error }
@@ -149,8 +149,8 @@ export const updateUser = async (id, user) => {
         if (!response.ok) {
             throw new Error(`Error: ${response} ${response}`)
         }
-
-        return { data, message }
+        let lol = 'test'
+        return { lol, data, message }
     } catch (error) {
         console.error(error.message)
     }

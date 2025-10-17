@@ -1,10 +1,11 @@
 import { useEffect } from 'react'
+import { Link } from 'react-router-dom';
 import { Tag, Button, Divider, Radio, Table, Input, Checkbox } from 'antd'
 import { useAdminContext } from '../../../contexts/adminContext';
 import { useTaskContext } from '../../../contexts/taskContext';
 
 export function TaskPanelList({ filter }) {
-    const { adminData, setAdminData, readAllTasks } = useAdminContext()
+    const { adminData, setAdminData, readAllTasks, updateTasks, deleteTasks } = useAdminContext()
     const { pagination } = useTaskContext()
 
     const filteredTasks = adminData.tasks?.filter((item) => {
@@ -18,6 +19,19 @@ export function TaskPanelList({ filter }) {
 
         return matchingStatus && matchingSearch
     })
+
+
+    const handleTaskDeleteSubmit = (e, id) => {
+        e.preventDefault()
+
+        console.log('loading')
+        deleteTasks(id)
+
+        return readAllTasks()
+            .then((response) => setAdminData({ ...adminData, tasks: response.data.tasks }))
+            .catch((error) => console.error(error))
+
+    }
 
 
     useEffect(() => {
@@ -52,7 +66,10 @@ export function TaskPanelList({ filter }) {
                             {item.createdBy}
                         </td>
                         <td className="px-6 py-4">
-                            <a href="#" className="font-medium text-blue-600 dark:text-blue-500 hover:underline">Delete  Update</a>
+                            <div className="flex justify-evenly">
+                                <Button className="text-white bg-red-700" onClick={(e) => handleTaskDeleteSubmit(e, item._id)}><Link>Delete</Link></Button>
+                                <Button className="text-black bg-green-200"><Link to={`/admin/tasks/update/${item._id}`}>Update</Link></Button>
+                            </div>
                         </td>
                     </tr>
                 )

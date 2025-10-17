@@ -113,3 +113,7 @@ coverage/
 # Archivos generados por Emacs
 *~
 \#*\#
+
+# Vite temp/cache files
+*.timestamp-*.mjs
+.vite/

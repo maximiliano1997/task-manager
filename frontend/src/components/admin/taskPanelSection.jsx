@@ -90,7 +90,7 @@ export function TaskPanelSection() {
                 </table>
             </div>
             <div className="flex justify-between p-2 bg-blue-600 rounded-b-lg">
-                <Pagination />
+                <Pagination page={'adminTasksPanel'} />
             </div>
 
         </div>

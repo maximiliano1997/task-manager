@@ -1,6 +1,6 @@
 import React, { useState, createContext, useContext } from 'react'
 
-import { readAllUsers, readAllTasks } from '../services/api/admin'
+import { readAllUsers, readAllTasks, updateTasks, deleteTasks } from '../services/api/admin'
 
 const adminContext = createContext()
 
@@ -22,6 +22,8 @@ const AdminContextWrapper = ({ children }) => {
 
         readAllUsers,
         readAllTasks,
+        updateTasks,
+        deleteTasks,
     }
 
     return (

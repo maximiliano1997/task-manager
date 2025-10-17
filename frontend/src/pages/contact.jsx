@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 import { Button, List } from 'antd'
 import { TwitterOutlined, TikTokOutlined, XOutlined, FacebookOutlined, SlackSquareOutlined } from '@ant-design/icons'
 
-
 export function Contact() {
     return (
         <div className="flex h-full place-items-center place-content-center align-center">

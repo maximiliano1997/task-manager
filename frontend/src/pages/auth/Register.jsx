@@ -44,7 +44,7 @@ export function Register() {
         }
     }
 
-    console.log(newUser)
+    console.log('ver', newUser)
 
 
     return (

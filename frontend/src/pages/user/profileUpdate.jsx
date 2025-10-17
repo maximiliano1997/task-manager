@@ -40,10 +40,10 @@ export const ProfileUpdate = () => {
         console.log(userUpdate.name)
         const payload = {
             name: userUpdate.name || user.name,
-            email: userUpdate.email || user.email,
+            email: userUpdate.email || '',
             password: authPass,
         }
-        console.log(payload)
+        console.log('que', payload)
 
         // if (userUpdate.name) {
         //     payload.name = userUpdate.name

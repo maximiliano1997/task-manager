@@ -23,6 +23,7 @@ import { Terms } from './pages/terms.jsx'
 import { Profile } from './pages/user/profile'
 import { ProfileUpdate } from './pages/user/profileUpdate.jsx'
 import { Admin } from './pages/admin/Admin.jsx'
+import { UpdateTasks } from './pages/admin/UpdateTasks.jsx'
 import { Success } from './pages/success.jsx'
 import { Error } from './pages/error.jsx'
 
@@ -66,6 +67,7 @@ function App() {
                   <Route path="/profile/edit/:id" element={<ProtectedRoute> <ProfileUpdate /> </ProtectedRoute>} />
 
                   <Route path="/admin" element={<ProtectedRoute> <Admin /> </ProtectedRoute>} />
+                  <Route path="/admin/tasks/update/:id" element={<UpdateTasks />} />
 
 
 
