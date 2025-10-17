@@ -33,7 +33,7 @@ app.use('/api/v1/admin', adminPanel)
 
 // after-middle
 
-const port = process.env.PORT || 3000
+const port = 3000
 const start = async () => {
     try {
         // conexion db
@@ -42,7 +42,7 @@ const start = async () => {
             .catch((error) => console.log('Connect to DB Failed !', error))
 
         // listen to server
-        app.listen(port, () => {
+        app.listen(port, '0.0.0.0', () => {
             console.log(`Server listening on localhost:${port}`)
         })
     } catch (error) {

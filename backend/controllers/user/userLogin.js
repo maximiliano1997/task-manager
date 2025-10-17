@@ -5,6 +5,8 @@ const { BadRequestError, UnauthenticatedError } = require('../../errors')
 const userLogin = async (req, res) => {
     const { email, password } = req.body
 
+    console.log(req.body)
+
     // verify if everything is provided for login
     if (!email || !password) {
         throw new BadRequestError('Please provide email and password')
@@ -19,6 +21,7 @@ const userLogin = async (req, res) => {
 
     // verify the password
     const isPasswordCorrect = await user.comparePassword(password)
+    console.log(isPasswordCorrect)
     if (!isPasswordCorrect) {
         throw new UnauthenticatedError('Invalid Credentials')
     }
@@ -28,7 +31,7 @@ const userLogin = async (req, res) => {
     const token = user.createJWT()
 
     // response from server
-    res.status(StatusCodes.OK).json({ user: { name: user.name }, token })
+    res.status(StatusCodes.OK).json({ user: { name: user.name, role: user.role }, token })
 
 }
 

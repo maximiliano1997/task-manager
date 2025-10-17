@@ -6,7 +6,7 @@ router.route('/userPanel').get(readAllUsers)
 router.route('/userPanel/:id').patch(updateUsers)
 router.route('/userPanel/:id').delete(deleteUsers)
 
-// Panel de Usuarios <-- para el admin
+// Panel de Tareas <-- para el admin
 router.route('/taskPanel').get(readAllTasks)
 router.route('/taskPanel/:id').patch(updateTasks)
 router.route('/taskPanel/:id').delete(deleteTasks)

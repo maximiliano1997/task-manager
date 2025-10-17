@@ -6,7 +6,7 @@ const { StatusCodes } = require('http-status-codes')
 const createTask = async (req, res) => {
 
     // Desestructuramos
-    const { name, completed, createdAt } = req.body
+    const { name, description, completed, createdAt } = req.body
     const { userId } = req.user
 
     console.log(req.body)
@@ -27,7 +27,7 @@ const createTask = async (req, res) => {
 
     // buld payload for db
     const payload = {
-        name, completed, createdAt, createdBy: userId
+        name, description, completed, createdAt, createdBy: userId
     }
 
     // Ejecutamos

@@ -19,7 +19,7 @@ const userRead = async (req, res) => {
     }
 
 
-    console.log('Your Profile: ', user)
+    // console.log('Your Profile: ', user)
 
     res.status(StatusCodes.OK).json({ data: { user, success: true, error: false, message: 'User Profile/Details completed Succesfully' } })
 }

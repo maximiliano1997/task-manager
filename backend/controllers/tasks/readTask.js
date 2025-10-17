@@ -12,11 +12,13 @@ const readTask = async (req, res) => {
         user: { userId }
     } = req
 
+    console.log('userId', userId)
+
     // Verify if task exists
     const taskExist = await TaskModel.find({ createdBy: userId })
 
     if (!taskExist) {
-        throw new Error(`No tasks foudn with id ${userId}`)
+        throw new Error(`No tasks found with id ${userId}`)
     }
 
     console.log(userId)

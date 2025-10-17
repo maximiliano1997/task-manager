@@ -10,41 +10,45 @@ const userUpdate = async (req, res) => {
         body: { name, email, password }
     } = req
 
+    console.log(req.body, req.user)
+
     // verifica si ya existe el usuario y fetchealo para actualizarlo
-    const userCheck = await UserModel.findOne(email)
-    if (!userCheck) {
+    const user = await UserModel.findById(userId)
+    if (!user) {
         throw new NotFoundError(`There is no user ---> ${name}`)
     }
-
-
-    // Build payload
-    const payload = {}
+    console.log(user)
 
 
     // crea los campos del payload
-    if (name) payload.name = name;
+    if (name) user.name = name;
+    if (password) user.password = password;
     if (email) {
         const emailExist = await UserModel.findOne({ email })
         if (emailExist && emailExist.id !== userId) {
-            payload.email = email
+            throw new BadRequestError('This email is already in use by other user.....')
         }
+        user.email = email
     };
 
-    if (password) payload.password = password;
+    // we save the user changes     
+    await user.save()
 
-    // Ejecutamos
-    const updatedUser = await UserModel.findByIdAndUpdate(userId, payload, { new: true, runvalidator: true })
 
     // Generar un nuevo token si el email <--(info critica) fue actualizado
     let token;
-    if (payload.email) {
-        token = updatedUser.createJWT()
+    if (user.email) {
+        token = user.createJWT()
     }
 
     res.status(StatusCodes.OK).json({
         success: true,
         message: 'User Update Successfully',
-        data: updatedUser,
+        data: {
+            id: user._id,
+            name: user.name,
+            email: user.email,
+        },
         token: token || undefined
     })
 }
@@ -52,4 +56,52 @@ const userUpdate = async (req, res) => {
 
 module.exports = userUpdate
 
+
+
+// this way below dont acept pre(save)
+// const userUpdate = async (req, res) => {
+//     // Desestructuramos el payload
+//     const {
+//         user: { userId },
+//         body: { name, email, password }
+//     } = req
+
+//     // verifica si ya existe el usuario y fetchealo para actualizarlo
+//     const user = await UserModel.findOne(email)
+//     if (!user) {
+//         throw new NotFoundError(`There is no user ---> ${name}`)
+//     }
+
+
+//     // Build payload
+//     const payload = {}
+
+
+//     // crea los campos del payload
+//     if (name) payload.name = name;
+//     if (email) {
+//         const emailExist = await UserModel.findOne({ email })
+//         if (emailExist && emailExist.id !== userId) {
+//             payload.email = email
+//         }
+//     };
+
+//     if (password) payload.password = password;
+
+//     // Ejecutamos
+//     const updatedUser = await UserModel.findByIdAndUpdate(userId, payload, { new: true, runvalidator: true })
+
+//     // Generar un nuevo token si el email <--(info critica) fue actualizado
+//     let token;
+//     if (payload.email) {
+//         token = updatedUser.createJWT()
+//     }
+
+//     res.status(StatusCodes.OK).json({
+//         success: true,
+//         message: 'User Update Successfully',
+//         data: updatedUser,
+//         token: token || undefined
+//     })
+// }
 

@@ -8,21 +8,29 @@ const updateTask = async (req, res) => {
     // Desestructuramos request
     const {
         user: { id: userId },
-        body: { name, completed },
+        body: { name, description, completed },
         params: { id: taskId },
     } = req
 
     console.log(req.body, req.params, req.user)
+    console.log(req.body.completed)
 
     // Check for info/data in the req
-    if (!name || !completed) {
+    if (!name && !description && completed === undefined) {
         throw new BadRequestError(' There is no payload ')
     }
 
     // build payload for ejecution
-    const payload = {
-        name: name,
-        completed: completed
+    const payload = {}
+
+    if (name) {
+        payload.name = name
+    }
+    if (description) {
+        payload.description = description
+    }
+    if (completed !== undefined) {
+        payload.completed = completed
     }
 
     // Execution

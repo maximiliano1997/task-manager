@@ -7,6 +7,11 @@ const TaskSchema = new Schema({
         type: String,
         required: [true, 'Please provide a task name']
     },
+    description: {
+        type: String,
+        default: ' ',
+        required: [true, 'Please Provide a task description']
+    },
     completed: {
         type: Boolean,
         default: false,

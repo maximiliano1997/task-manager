@@ -64,7 +64,7 @@ const updateTasks = async (req, res) => {
 
     const taskToUpdate = await TaskModel.findByIdAndUpdate(id, payload, { new: true })
 
-    res.status(StatusCodes.OK).json({ data: { taskUpdated: taskToUpdate }, success: true, error: false, message: 'adminPanel: Task Updated Success!' })
+    res.status(StatusCodes.OK).json({ data: { taskUpdated: taskToUpdate, success: true, error: false, message: 'adminPanel: Task Updated Success!' } })
 }
 
 
